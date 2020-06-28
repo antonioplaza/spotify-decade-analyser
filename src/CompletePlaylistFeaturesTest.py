@@ -40,7 +40,7 @@ def get_Spotify_session():
 
 def get_song_ids_from_playlist(user, playlist, sp):
     "Function that returns the IDs from all the songs of the playlist."
-    playlist = sp.user_playlist(user, playlist_code, fields="tracks,next")
+    playlist = sp.user_playlist(user, playlist, fields="tracks,next")
     songs = playlist["tracks"] ["items"]    
     playlist_uris = [uris['track']['id'] for uris in songs]
     return playlist_uris
@@ -54,21 +54,29 @@ def get_features_of_uris(uris, sp):
     return song_valence
 
 
-# Start Spotify Session:
 
-sp = get_Spotify_session()
+def main():
+    
+    # Start Spotify Session:
+    
+    sp = get_Spotify_session()
+    
+    # Define User and Playlist:
+    
+    user = '1113392617'
+    playlist = '3nBQnSuVv70nmSNgRtETNJ'
+    
+    # Get the uirs from playlist:
+    
+    playlist_songs = get_song_ids_from_playlist(user, playlist, sp)
+    uris = get_song_ids_from_playlist(user, playlist)
 
-# Define User and Playlist:
-
-user = '1113392617'
-playlist = '3nBQnSuVv70nmSNgRtETNJ'
-
-# Get the uirs from playlist:
-
-playlist_songs = get_song_ids_from_playlist(user, playlist, sp)
-uris = get_song_ids_from_playlist(user, playlist)
 
 
+
+if __name__ == "__main__":
+    main()
+    
 
 
 # Access to Sunday Morning (2nd song of the playlist):
