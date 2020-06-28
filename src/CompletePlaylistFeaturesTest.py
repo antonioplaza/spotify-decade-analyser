@@ -35,7 +35,6 @@ def get_Spotify_session():
 
     return sp
 
-
 # Obtains Uris of all the songs in a playlist (max 100)
 
 def get_song_ids_from_playlist(user, playlist, sp):
@@ -66,11 +65,10 @@ def main():
     user = '1113392617'
     playlist = '3nBQnSuVv70nmSNgRtETNJ'
     
-    # Get the uirs from playlist:
+    # Get the uris from playlist:
     
     playlist_songs = get_song_ids_from_playlist(user, playlist, sp)
-    uris = get_song_ids_from_playlist(user, playlist)
-
+    uris = get_song_ids_from_playlist(user, playlist, sp)
 
 
 
