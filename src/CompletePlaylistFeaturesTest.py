@@ -11,7 +11,8 @@ Created on Fri Jun 26 17:31:02 2020
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials 
 import json
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 from Spotifysession import Spotifysession
 
 def main():
@@ -24,9 +25,13 @@ def main():
     
     session = Spotifysession(user, playlist_id)
     
-    playlist_valence = session.get_features_playlist(feature = 'danceability')
+    playlist_danceability = session.get_features_playlist(feature = 'danceability')
 
+    playlist_several_features = session.get_several_features_playlist(['danceability', 'key'])
 
+    sns.distplot(playlist_several_features['danceability'])
+    plt.show()
+    
 if __name__ == "__main__":
     main()
     

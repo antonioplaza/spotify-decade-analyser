@@ -49,7 +49,7 @@ class Spotifysession():
         return songs_ids_in_playlist
     
     
-    def get_features_playlist(self, feature = 'valence'):
+    def get_features_playlist(self, feature: str):
         "Function that returns the features from all the ids."
         
         songs_ids_in_playlist  = self.get_song_ids_from_playlist()
@@ -58,6 +58,22 @@ class Spotifysession():
         playlist_songs_certain_feature = [songs[feature] for songs in playlist_songs_features]
         
         return playlist_songs_certain_feature
+        
+        
+    def get_several_features_playlist(self, features_list : list):
+        "Function that returns the features from all the ids."
+    
+        # {feature: self.get_feature_playlist(feature) for feature in features_list}
+        
+        features_dict = {}
+        
+        for feature in features_list:
+            
+            features_dict[feature] = self.get_features_playlist(feature)
+            
+        return features_dict
+        
+    
         
 
 
